@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ product.name }}</h1>
+<p>Description: {{ product.description }}</p>
+<p>Price: ${{ product.price }}</p>
+
+<h2>Reviews</h2>
+<ul>
+  {% for review in reviews %}
+  <li>{{ review.author }} says: "{{ review.content }}"</li>
+  {% empty %}
+  <li>No reviews yet.</li>
+  {% endfor %}
+</ul>
+
+<button onclick="document.getElementById('add_review_form').style.display='block'">Leave a Review</button>
+<form id="add_review_form" method="post" style="display:none;">
+  {% csrf_token %}
+  <input type="text" name="author" placeholder="Your Name" required><br>
+  <textarea name="content" placeholder="Your Review" required></textarea><br>
+  <button type="submit">Submit Review</button>
+</form>
+{% endblock %}

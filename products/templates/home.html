@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ slogan.text }}</h1>
+<iframe width="560" height="315" src="{{ video.video_url }}" frameborder="0" allowfullscreen></iframe>
+
+<h2>Top 5 Products of the Week</h2>
+<ul>
+  {% for product in top_products %}
+  <li>{{ product.name }} - ${{ product.price }}</li>
+  {% endfor %}
+</ul>
+{% endblock %}
